@@ -16,13 +16,21 @@ public class GameMain : MonoBehaviour
     }
 
 IEnumerator waki()
-{
-    while (true)
-    {  
-    Vector3 zahyou = new Vector3(Random.Range(1.0f, 100.0f), Random.Range(1.0f, 100.0f), Random.Range(1.0f, 100.0f));
-    Instantiate(enemy, zahyou, Quaternion.identity);
-    yield return new WaitForSeconds(0.3f);
-    }
+    {
+
+        while (true)
+        {
+            float theta = Random.Range(0f, Mathf.PI);
+            float phi = Random.Range(0f, 2 * Mathf.PI);
+            float radius = 20;
+            Vector3 zahyou = new Vector3(radius * Mathf.Cos(theta) * Mathf.Cos(phi), radius * Mathf.Cos(theta) * Mathf.Sin(phi), radius * Mathf.Sin(theta));
+            Instantiate(enemy, zahyou, Quaternion.identity);
+            yield return new WaitForSeconds(1f);
+
+            /* Vector3 zahyou = new Vector3(Random.Range(1.0f, 100.0f), Random.Range(1.0f, 100.0f), Random.Range(1.0f, 100.0f));
+             Instantiate(enemy, zahyou, Quaternion.identity);
+             yield return new WaitForSeconds(0.3f);*/
+        }
 }
 // Update is called once per frame
 void Update()
