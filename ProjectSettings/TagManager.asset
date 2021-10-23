@@ -7,6 +7,8 @@ TagManager:
   - CinemachineTarget
   - Fire
   - Target
+  - Enemy
+  - AttackCheck
   layers:
   - Default
   - TransparentFX

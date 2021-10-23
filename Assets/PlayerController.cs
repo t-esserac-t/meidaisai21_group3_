@@ -11,12 +11,15 @@ public class PlayerController : MonoBehaviour
     private Transform PlayerTransform;
     private Transform CameraTransform;
     public GameObject attack;
+
+    AudioSource audio;
     // Use this for initialization
     void Start()
     {
 
         PlayerTransform = transform.parent;
         CameraTransform = GetComponent<Transform>();
+        audio = gameObject.GetComponent<AudioSource>();
 
     }
 
@@ -53,10 +56,15 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-
+            audio.Play();
             StartCoroutine(Shot());
         }
+<<<<<<< Updated upstream:Assets/PlayerController.cs
 
+=======
+        float X_Rotation = Input.GetAxis("Mouse Y");
+        PlayerTransform.transform.Rotate(-X_Rotation*7, 0, 0);
+>>>>>>> Stashed changes:Assets/Scripts/PlayerController.cs
     }
 
     IEnumerator Shot()
