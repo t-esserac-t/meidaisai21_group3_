@@ -5,12 +5,19 @@ using UnityEngine;
 public class EnemyTest : MonoBehaviour
 {
     public GameObject explosion_prefab;
+    public GameObject damaged_prefab;
+
     public float speed;
-   // public bool isAttacked;
+    // public bool isAttacked;
     // Start is called before the first frame update
+
+    public int armorPoint;
+    public int armorPointMax=3;
+    int damage = 1;
+
     void Start()
     {
-        
+        armorPoint = armorPointMax;
     }
 
     // Update is called once per frame
@@ -24,13 +31,17 @@ public class EnemyTest : MonoBehaviour
         //接触したオブジェクトのタグが"Player"のとき
         if (other.tag == "Fire")
         {
-            Instantiate(explosion_prefab, this.transform.position, Quaternion.identity);
-            //thisとは: このスクリプトのこと。this.transform.positionは「このスクリプトがくっついているオブジェクトの位置」の意味
-            //Debug.Log("attacked");
+            armorPoint -= damage;
+            Instantiate(damaged_prefab, this.transform.position, Quaternion.identity);
+            if (armorPoint <= 0)
+            {
+                Instantiate(explosion_prefab, this.transform.position, Quaternion.identity);
+                //thisとは: このスクリプトのこと。this.transform.positionは「このスクリプトがくっついているオブジェクトの位置」の意味
+                //Debug.Log("attacked");
 
-            GameObject.Find("GameMain").GetComponent<GameMain>().calcDamage();
-            Destroy(this.gameObject);
-
+                GameObject.Find("GameMain").GetComponent<GameMain>().calcDamage();
+                Destroy(this.gameObject);
+            }
         }
         else if (other.tag == "Player")
         {

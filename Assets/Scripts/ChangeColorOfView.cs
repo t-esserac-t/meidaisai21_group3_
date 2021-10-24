@@ -32,14 +32,7 @@ public class ChangeColorOfView: MonoBehaviour
             this.img.color = Color.Lerp(this.img.color, Color.clear, Time.deltaTime);
         }
 
-        /*
-        bool isAttacked;
-        isAttacked = checkAttacked.isAttacked;
-
-        if (isAttacked == true)
-        { }
-        else
-        { }*/
+ 
 
     }
 

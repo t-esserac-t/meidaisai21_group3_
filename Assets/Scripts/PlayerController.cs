@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public CheckAttacked checkAttacked;
+
     AudioSource audioSource;
     public GameObject Player;
     public GameObject Camera;
@@ -12,6 +14,9 @@ public class PlayerController : MonoBehaviour
     private Transform PlayerTransform;
     private Transform CameraTransform;
     public GameObject attack;
+
+    public AudioClip shot;
+    public AudioClip cantShot;
     // Use this for initialization
     void Start()
     {
@@ -20,11 +25,15 @@ public class PlayerController : MonoBehaviour
         PlayerTransform = transform.parent;
         CameraTransform = GetComponent<Transform>();
 
+       bool isAttacked;
+        isAttacked = checkAttacked.isAttacked;
     }
 
     // Update is called once per frame
     void Update()
     {
+        bool isAttacked;
+        isAttacked = checkAttacked.isAttacked;
         /*
         float X_Rotation = Input.GetAxis("Mouse X");
         float Y_Rotation = Input.GetAxis("Mouse Y");
@@ -64,8 +73,14 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
+            if (isAttacked == false)
+            {
+                StartCoroutine(Shot());
+            }
+            else { 
+                     audioSource.PlayOneShot(cantShot);
+        }
 
-            StartCoroutine(Shot());
         }
         float X_Rotation = Input.GetAxis("Mouse Y");
         PlayerTransform.transform.Rotate(-X_Rotation*8, 0, 0);
@@ -75,7 +90,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator Shot()
     {
         attack.SetActive(true);
-        audioSource.Play();
+        audioSource.PlayOneShot(shot);
         yield return new WaitForSeconds(0.3f);
         attack.SetActive(false);
     }
