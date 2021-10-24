@@ -22,7 +22,7 @@ IEnumerator waki()
         {
             float theta = Random.Range(0f, Mathf.PI);
             float phi = Random.Range(0f, 2 * Mathf.PI);
-            float radius = 20;
+            float radius = Random.Range(7.0f,30.0f);
             Vector3 zahyou = new Vector3(radius * Mathf.Cos(theta) * Mathf.Cos(phi), radius * Mathf.Cos(theta) * Mathf.Sin(phi), radius * Mathf.Sin(theta));
             Instantiate(enemy, zahyou, Quaternion.identity);
             yield return new WaitForSeconds(1f);

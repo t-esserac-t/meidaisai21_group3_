@@ -12,7 +12,7 @@ public class CountDown : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        time = 60;
+        time = 20;
 
         
     }

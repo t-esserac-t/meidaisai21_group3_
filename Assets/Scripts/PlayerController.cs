@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    AudioSource audioSource;
     public GameObject Player;
     public GameObject Camera;
     public float speed;
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        audioSource = gameObject.GetComponent<AudioSource>();
 
         PlayerTransform = transform.parent;
         CameraTransform = GetComponent<Transform>();
@@ -66,13 +68,14 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Shot());
         }
         float X_Rotation = Input.GetAxis("Mouse Y");
-        PlayerTransform.transform.Rotate(-X_Rotation*5, 0, 0);
+        PlayerTransform.transform.Rotate(-X_Rotation*8, 0, 0);
     }
     
 
     IEnumerator Shot()
     {
         attack.SetActive(true);
+        audioSource.Play();
         yield return new WaitForSeconds(0.3f);
         attack.SetActive(false);
     }
