@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class ClearOrFailed : MonoBehaviour
 {
     public Result resultScore;
-
+    public static float clearCount=10;
     //public float clearOrFailure;
     public Text clearOrFailureText; 
 
@@ -16,7 +16,7 @@ public class ClearOrFailed : MonoBehaviour
     void Start()
     {
         float clearOrFailure = resultScore.result;
-        if(clearOrFailure>=10)
+        if(clearOrFailure>=clearCount)
         {
             clearOrFailureText.text = "CLEAR";
         }

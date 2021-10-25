@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip shot;
     public AudioClip cantShot;
+
+    public CountDown countDown;
     // Use this for initialization
     void Start()
     {
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
        bool isAttacked;
         isAttacked = checkAttacked.isAttacked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -63,7 +66,7 @@ public class PlayerController : MonoBehaviour
             PlayerTransform.transform.position += -dir1 * speed * Time.deltaTime;
         }
         */
-        if (Input.GetKey(KeyCode.A))
+/*        if (Input.GetKey(KeyCode.A))
         {
             PlayerTransform.transform.Rotate(0, -90 * Time.deltaTime, 0);
         }
@@ -71,6 +74,7 @@ public class PlayerController : MonoBehaviour
         {
             PlayerTransform.transform.Rotate(0,90*Time.deltaTime,0);
         }
+        */
         if (Input.GetMouseButtonDown(0))
         {
             if (isAttacked == false)
@@ -82,8 +86,19 @@ public class PlayerController : MonoBehaviour
         }
 
         }
+        float sensitivity;
+        if (countDown.time / 60 >= 0.75)
+        {
+            sensitivity = 2;
+        }
+        else
+        {
+            sensitivity = 6;
+        }
         float X_Rotation = Input.GetAxis("Mouse Y");
-        PlayerTransform.transform.Rotate(-X_Rotation*8, 0, 0);
+        PlayerTransform.transform.Rotate(-X_Rotation*sensitivity, 0, 0);
+        float Y_Rotation = Input.GetAxis("Mouse X");
+        PlayerTransform.transform.Rotate( 0, Y_Rotation * sensitivity, 0);
     }
     
 
