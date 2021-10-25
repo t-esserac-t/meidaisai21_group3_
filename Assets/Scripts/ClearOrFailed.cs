@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class ClearOrFailed : MonoBehaviour
 {
     public Result resultScore;
-
+   private int handan;
     //public float clearOrFailure;
     public Text clearOrFailureText; 
 
@@ -16,8 +16,13 @@ public class ClearOrFailed : MonoBehaviour
     void Start()
     {
         float clearOrFailure = resultScore.result;
-        if(clearOrFailure>=10)
+        handan = GameSystem.fixedClearCount;
+        Debug.Log("handan: " + handan);
+        Debug.Log("in result scene, fixedClearCount is " + GameSystem.fixedClearCount);
+        Debug.Log(handan);
+        if(clearOrFailure>=handan)
         {
+            Debug.Log("handan is"+handan);
             clearOrFailureText.text = "CLEAR";
         }
         else

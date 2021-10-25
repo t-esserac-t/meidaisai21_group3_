@@ -7,17 +7,25 @@ public class EnemyTest : MonoBehaviour
     public GameObject explosion_prefab;
     public GameObject damaged_prefab;
 
+   // public GameMain gameMain;
+
     public float speed;
     // public bool isAttacked;
     // Start is called before the first frame update
 
     public int armorPoint;
-    public int armorPointMax=3;
+   //public int armorPointMax=3;
     int damage = 1;
 
     void Start()
     {
-        armorPoint = armorPointMax;
+        //Debug.Log(speed);
+        armorPoint = GameSystem.fixedEnemyEndurance;
+        speed = GameSystem.fixedEnemySpeed;
+        //gameMain = GameObject.Find("GameMain").GetComponent<GameMain>();
+
+        //armorPoint = gameMain.fixedEnemyEndurance;
+        //  armorPoint = armorPointMax;
     }
 
     // Update is called once per frame

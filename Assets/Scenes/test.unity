@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 131.16855, g: 162.52502, b: 215.10977, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2499,6 +2499,14 @@ PrefabInstance:
       propertyPath: damaged_prefab
       value: 
       objectReference: {fileID: 4212237911574779972, guid: f34d53a9f8cd409428b8d1e3addf4807, type: 3}
+    - target: {fileID: 8151076324205337163, guid: 1c8b39656da7b814fac0f510e21e3c8a, type: 3}
+      propertyPath: gameMain
+      value: 
+      objectReference: {fileID: 1652062399}
+    - target: {fileID: 8151076324205337163, guid: 1c8b39656da7b814fac0f510e21e3c8a, type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8151076324205337165, guid: 1c8b39656da7b814fac0f510e21e3c8a, type: 3}
       propertyPath: m_Name
       value: E

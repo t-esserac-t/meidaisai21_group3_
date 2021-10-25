@@ -6,16 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class CountDown : MonoBehaviour
 {
+   //public GameMain gameMain;
     public float time;
     private float time2;
     public Text timeText;
-
+    //GameMain gameMain;
     // Start is called before the first frame update
     void Start()
     {
-        time = 20;
-
-        
+        //time = gameMain.fixedTimeCount;
+       // gameMain = GameObject.Find("GameMain").GetComponent<GameMain>();
+        //Debug.Log(gameMain.fixedTimeCount);
+        //time = gameMain.fixedTimeCount;
+        time = GameSystem.fixedTimeCount;
     }
 
     // Update is called once per frame
@@ -28,7 +31,7 @@ public class CountDown : MonoBehaviour
         if (time <= 0)
         {
             SceneManager.LoadScene("Result");
-
+            //GameObject.Find("System").GetComponent<GameSystem>().GoToResult();
         }
     }
 }
