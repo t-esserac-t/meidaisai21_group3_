@@ -7,17 +7,23 @@ public class EnemyTest : MonoBehaviour
     public GameObject explosion_prefab;
     public GameObject damaged_prefab;
 
+ // public CountDown countDown;
+
     public float speed;
+   // public PlayerController playerController;
     // public bool isAttacked;
     // Start is called before the first frame update
 
     public int armorPoint;
     public int armorPointMax=3;
-    int damage = 1;
 
+    private int enemyDamage;
     void Start()
     {
-        armorPoint = armorPointMax;
+      
+            armorPoint = armorPointMax;
+       
+        
     }
 
     // Update is called once per frame
@@ -25,13 +31,21 @@ public class EnemyTest : MonoBehaviour
     {
         transform.LookAt(Vector3.zero);
         transform.position = Vector3.MoveTowards(transform.position,Vector3.zero,speed);
+
     }
     void OnTriggerEnter(Collider other)
     {
+      // Debug.Log(damage);
         //接触したオブジェクトのタグが"Player"のとき
         if (other.tag == "Fire")
         {
-            armorPoint -= damage;
+            enemyDamage = GameMain.damage;
+            //Debug.Log(countDown.time);
+            /*if (countDown.time >= 50)
+            { damage = 1; }
+            else
+            { damage = 3; }*/
+            armorPoint -= enemyDamage;
             Instantiate(damaged_prefab, this.transform.position, Quaternion.identity);
             if (armorPoint <= 0)
             {

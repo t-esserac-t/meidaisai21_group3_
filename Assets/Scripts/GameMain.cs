@@ -5,8 +5,13 @@ using UnityEngine;
 public class GameMain : MonoBehaviour
 {
     public GameObject enemy;
+   // public EnemyTest enemyTest;
     public bool isAttacked;
     public int score = 0;
+    public CountDown countDown;
+
+    public static int damage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +30,12 @@ IEnumerator waki()
             float radius = Random.Range(7.0f,30.0f);
             Vector3 zahyou = new Vector3(radius * Mathf.Cos(theta) * Mathf.Cos(phi), radius * Mathf.Cos(theta) * Mathf.Sin(phi), radius * Mathf.Sin(theta));
             Instantiate(enemy, zahyou, Quaternion.identity);
+           if(countDown.time<=60)
+           { damage = 3; }
+            else
+            {
+                damage = 1;
+            }
             enemy.gameObject.tag = "Enemy";
             yield return new WaitForSeconds(1f);
 
