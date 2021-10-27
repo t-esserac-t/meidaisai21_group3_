@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
             PlayerTransform.transform.position += -dir1 * speed * Time.deltaTime;
         }
         */
+        /*
         if (Input.GetKey(KeyCode.A))
         {
             PlayerTransform.transform.Rotate(0, -90 * Time.deltaTime, 0);
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             PlayerTransform.transform.Rotate(0,90*Time.deltaTime,0);
-        }
+        }*/
         if (Input.GetMouseButtonDown(0))
         {
             if (isAttacked == false)
@@ -83,7 +84,9 @@ public class PlayerController : MonoBehaviour
 
         }
         float X_Rotation = Input.GetAxis("Mouse Y");
+        float Y_Rotation = Input.GetAxis("Mouse X");
         PlayerTransform.transform.Rotate(-X_Rotation*8, 0, 0);
+        PlayerTransform.transform.Rotate( 0, Y_Rotation * 8, 0);
     }
     
 
