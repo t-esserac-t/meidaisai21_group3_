@@ -11,6 +11,10 @@ public class GameMain : MonoBehaviour
     public CountDown countDown;
 
     public static int damage;
+    public float timeOfOffensivePowerIncreased;
+    public float timeOfMouseSensitivityIncreased;
+    public float timeOfCollisionDetectionExpanded;
+    public float timeOfAutoAimable;
 
     // Start is called before the first frame update
     void Start()
@@ -30,15 +34,26 @@ IEnumerator waki()
             float radius = Random.Range(7.0f,30.0f);
             Vector3 zahyou = new Vector3(radius * Mathf.Cos(theta) * Mathf.Cos(phi), radius * Mathf.Cos(theta) * Mathf.Sin(phi), radius * Mathf.Sin(theta));
             Instantiate(enemy, zahyou, Quaternion.identity);
-           if(countDown.time<=60)
-           { damage = 3; }
+           if(countDown.time<=timeOfOffensivePowerIncreased)
+           {
+                damage = 3; 
+           }
+            else
+           {
+               damage = 1;
+           }
+            enemy.gameObject.tag = "Enemy";
+            if(countDown.time<=10)
+            { yield return new WaitForSeconds(0.1f);
+            }
+            else if ((10<countDown.time)&&(countDown.time <= 45))
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
             else
             {
-                damage = 1;
+                yield return new WaitForSeconds(1f);
             }
-            enemy.gameObject.tag = "Enemy";
-            yield return new WaitForSeconds(1f);
-
             /* Vector3 zahyou = new Vector3(Random.Range(1.0f, 100.0f), Random.Range(1.0f, 100.0f), Random.Range(1.0f, 100.0f));
              Instantiate(enemy, zahyou, Quaternion.identity);
              yield return new WaitForSeconds(0.3f);*/

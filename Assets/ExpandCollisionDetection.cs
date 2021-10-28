@@ -6,6 +6,7 @@ public class ExpandCollisionDetection : MonoBehaviour
 {
     public CountDown countDown;
     public Vector3 collisionDetection=new Vector3(1,1,1);
+    public GameMain gameMain;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,7 @@ public class ExpandCollisionDetection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(countDown.time<=50)
+        if(countDown.time<=gameMain.timeOfCollisionDetectionExpanded)
         {
             collisionDetection.z = 3; 
         }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
     public float sensitivity;
     public int damage;
+    public GameMain gameMain;
+    GameObject target = null;
     // Use this for initialization
     void Start()
     {
@@ -71,7 +74,7 @@ public class PlayerController : MonoBehaviour
             PlayerTransform.transform.position += -dir1 * speed * Time.deltaTime;
         }
         */
-/*        if (Input.GetKey(KeyCode.A))
+        /* if (Input.GetKey(KeyCode.A))
         {
             PlayerTransform.transform.Rotate(0, -90 * Time.deltaTime, 0);
         }
@@ -80,19 +83,20 @@ public class PlayerController : MonoBehaviour
             PlayerTransform.transform.Rotate(0,90*Time.deltaTime,0);
         }
         */
+
         if (Input.GetMouseButtonDown(0))
         {
             if (isAttacked == false)
             {
                 StartCoroutine(Shot());
             }
-            else { 
+            else
+            { 
                      audioSource.PlayOneShot(cantShot);
-        }
-
+            }
         }
         
-        if (countDown.time >=75)
+        if (countDown.time >=gameMain.timeOfMouseSensitivityIncreased)
         {
             sensitivity = 2;
         }
@@ -100,21 +104,62 @@ public class PlayerController : MonoBehaviour
         {
             sensitivity = 6;
         }
-        float X_Rotation = Input.GetAxis("Mouse Y");
-        PlayerTransform.transform.Rotate(-X_Rotation*sensitivity, 0, 0);
-        float Y_Rotation = Input.GetAxis("Mouse X");
-        PlayerTransform.transform.Rotate( 0, Y_Rotation * sensitivity, 0);
-        if(countDown.time<=45)
+        //if (countDown.time >= 30)
+        //{
+          
+        /*}
+        else
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        }
+        */
+
+        damage = GameMain.damage;
+
+      /*  if(countDown.time<= timeOfOffensivePowerIncreased)
         { damage = 3; }
-        else { damage = 1; }
+        else { damage = 1; }*/
+
+        if(countDown.time<=gameMain.timeOfAutoAimable)
+        {
+            target = FindClosestEnemy();
+            transform.LookAt(target.transform);
+            // Debug.Log(tagEnemies.transform.position.Min());
+        }
+        else
+        {
+            float X_Rotation = Input.GetAxis("Mouse Y");
+            PlayerTransform.transform.Rotate(-X_Rotation * sensitivity, 0, 0);
+            float Y_Rotation = Input.GetAxis("Mouse X");
+            PlayerTransform.transform.Rotate(0, Y_Rotation * sensitivity, 0);
+        }
     }
-    
+
+    GameObject FindClosestEnemy()
+    {
+        GameObject[] enemies;
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        //Vector3 position = Vector3.zero;
+        foreach(GameObject enm in enemies)
+        {
+            Vector3 diff = enm.transform.position;
+            float curDistance = diff.sqrMagnitude;
+
+            if(curDistance<distance)
+            { closest = enm;
+                distance = curDistance;
+            }
+        }
+        return closest;
+    }
 
     IEnumerator Shot()
     {
         attack.SetActive(true);
         audioSource.PlayOneShot(shot);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.05f);
         attack.SetActive(false);
     }
 }
