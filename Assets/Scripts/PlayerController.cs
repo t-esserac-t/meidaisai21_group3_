@@ -99,10 +99,12 @@ public class PlayerController : MonoBehaviour
         if (countDown.time >=gameMain.timeOfMouseSensitivityIncreased)
         {
             sensitivity = 2;
+          
         }
         else
         {
             sensitivity = 6;
+            //GameMain.roundCount = 1;
         }
         //if (countDown.time >= 30)
         //{

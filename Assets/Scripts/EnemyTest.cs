@@ -41,6 +41,7 @@ public class EnemyTest : MonoBehaviour
         
        
         transform.LookAt(Vector3.zero);
+        transform.Rotate(new Vector3(-90, 0, 0));
         transform.position = Vector3.MoveTowards(transform.position,Vector3.zero,speed*Time.deltaTime);
 
     }

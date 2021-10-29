@@ -22,7 +22,7 @@ public class CountDown : MonoBehaviour
     {
         time -= Time.deltaTime;
         time2 = Mathf.Floor(time * 10) / 10;
-        timeText.text = "TIME: "+ time2;
+        timeText.text = "Play Time: "+ time2;
 
         if (time <= 0)
         {

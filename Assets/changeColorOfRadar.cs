@@ -21,10 +21,12 @@ public class changeColorOfRadar : MonoBehaviour
         bool canAttackTheEnemies = canAttack.canAttackTheEnemies;
         if (canAttackTheEnemies == true)
         {
-            this.radar.color = new Color(0.5f, 0.5f, 0f, 1f);
+            this.radar.color = Color.white;
         }
         else
+            
         {
-            this.radar.color = Color.white;       }
+            this.radar.color = new Color(1f, 1f, 1f, 0.5f);
+        }
     }
 }

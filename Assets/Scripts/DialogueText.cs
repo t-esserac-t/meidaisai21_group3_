@@ -5,94 +5,101 @@ using UnityEngine.UI;
 
 public class DialogueText : MonoBehaviour
 {
-   
+
     public PlayerController playerController;
     public Text dialogue;
-    public Color opacityOfDialogue=Color.white;
+   // public Color opacityOfDialogue = Color.white;
     //関数を呼ぶたびに↑こいつをwhiteにする
-   bool isSensitivityIncreasedMentioned=false;
+    bool isSensitivityIncreasedMentioned = false;
     bool isOffensivePowerMentioned = false;
-    Animator animator;
+  //  Animator animator;
 
     public GameMain gameMain;
     public CountDown countDown;
     // Start is called before the first frame update
     void Start()
     {
-        animator = this.gameObject.GetComponent<Animator>();
+        //animator = this.gameObject.GetComponent<Animator>();
         dialogue.color = Color.white;
-        dialogue.text = "";    }
+        dialogue.text = "";
+    }
 
     // Update is called once per frame
     void Update()
     {
+        int number = GameMain.roundCount;
+        switch (number)
+        {
+            case 0:
+                dialogue.text = "";
+                break;
+            case 1:
+                dialogue.text = "Mouse sensitivity increased.";
+                break;
+            case 2:
+                dialogue.text = "Mouse sensityvity increased.\nOffensive power increased.";
+                break;
+            case 3:
+                dialogue.text = "Mouse sensityvity increased.\nOffensive power increased.\nHit detection expanded.";
+                break;
+            case 4:
+                dialogue.text = "Mouse sensityvity increased.\nOffensive power increased.\nHit detection expanded.\nAuto aimable.";
+                break;
+        }
+
+    }
+}
         //if ((countDown.time <= gameMain.timeOfMouseSensitivityIncreased) && (countDown.time >= gameMain.timeOfMouseSensitivityIncreased - 2.3f))
         //{
-          //  StartCoroutine(animation("Mouse sensitivity increased."));
-            //animator.enabled = false;
+        //  StartCoroutine(animation("Mouse sensitivity increased."));
+        //animator.enabled = false;
         //}
-       // animateDialogue("Offensive power increased.");
+        // animateDialogue("Offensive power increased.");
         //animateDialogue("Collision detection expanded.");
         //animateDialogue("Auto aimable.");
-        
-        
-        /*&& ( gameMain.timeOfMouseSensitivityIncreased<= countDown.time + 2.3f))*/
-        //  {
+
+
+/*&& ( gameMain.timeOfMouseSensitivityIncreased<= countDown.time + 2.3f))*/
+//  {
+//float count = 0;
+// while (count <= 2000)
+///  {
+
+//dialogue.text = ("Mouse sensitivity increased.");
+//animator.Play("DialogueAnimation");
+
+
+// isSensitivityIncreasedMentioned = true;
+// }
+// dialogue.text = ("");
+//}
+/*else
+{
+    animator.enabled = false ;
+   /* if ((countDown.time <= gameMain.timeOfOffensivePowerIncreased)
+&& (countDown.time >= gameMain.timeOfOffensivePowerIncreased - 2.3f))
+    {
         //float count = 0;
         // while (count <= 2000)
         ///  {
-
-        //dialogue.text = ("Mouse sensitivity increased.");
-        //animator.Play("DialogueAnimation");
-
-
+        dialogue.text = ("Offensive power increased.");
+        animator.Play("DialogueAnimation");
         // isSensitivityIncreasedMentioned = true;
         // }
         // dialogue.text = ("");
-        //}
-        /*else
-        {
-            animator.enabled = false ;
-           /* if ((countDown.time <= gameMain.timeOfOffensivePowerIncreased)
-    && (countDown.time >= gameMain.timeOfOffensivePowerIncreased - 2.3f))
-            {
-                //float count = 0;
-                // while (count <= 2000)
-                ///  {
-                dialogue.text = ("Offensive power increased.");
-                animator.Play("DialogueAnimation");
-                // isSensitivityIncreasedMentioned = true;
-                // }
-                // dialogue.text = ("");
-            }
-            else
-            {
-                animator.enabled = false;
-         }   
-         */
+    }
+    else
+    {
+        animator.enabled = false;
+ }   
+ */
 
 
 
 
-        
-     if ((playerController.sensitivity ==6) &&(isSensitivityIncreasedMentioned == false))
-      {
-             dialogue.color = Color.white;
-            // StartCoroutine(HALDialogue("Mouse sensitivity increased."));
-            // isSensitivityIncreased = true;
-            // Debug.Log("HAL");
-            if (dialogue.color.a >=0.05 )
-            {
-                dialogue.color = ChangeColorOfDialogue("Mouse sensitivity increased.", dialogue.color);
-            }
-           else
-           {
-                dialogue.color = Color.white;
-                dialogue.text = "";
-                isSensitivityIncreasedMentioned = true;
-            }
-      }
 
+
+/*
      if((GameMain.damage==3)&&(isOffensivePowerMentioned==false))
         {
             if (dialogue.color.a >= 0.05)
@@ -144,7 +151,7 @@ public class DialogueText : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
     }
-    */
+    
 
     Color ChangeColorOfDialogue(string dlg,Color c)
     {
@@ -154,4 +161,5 @@ public class DialogueText : MonoBehaviour
        // Debug.Log(dialogue.color);
         return c;
     }
-}
+    */
+
