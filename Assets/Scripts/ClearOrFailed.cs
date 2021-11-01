@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class ClearOrFailed : MonoBehaviour
 {
     public Result resultScore;
-    public static float clearCount=165;
+    public static float clearCount=130;
     //public float clearOrFailure;
     public Text clearOrFailureText; 
 
@@ -24,6 +24,15 @@ public class ClearOrFailed : MonoBehaviour
         {
             clearOrFailureText.text = "FAILURE";
         }
+
+        // if(resultScore.result)
+
+       // PlayerPrefs.SetInt("1st",0);
+       // PlayerPrefs.SetInt("2nd",0);
+       // PlayerPrefs.SetInt("3rd",0);
+       // PlayerPrefs.SetInt("4th",0);
+       // PlayerPrefs.SetInt("5th",0);
+
     }
 
     // Update is called once per frame
