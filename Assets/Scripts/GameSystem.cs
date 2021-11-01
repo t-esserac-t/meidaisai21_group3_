@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class GameSystem : MonoBehaviour
 {
-   public void StartGame()
+    public void StartGame()
     {
         Cursor.visible = false;
-        SceneManager.LoadScene ("test");
+        SceneManager.LoadScene("test");
     }
     public void BackToTitle()
     {
@@ -24,5 +24,18 @@ public class GameSystem : MonoBehaviour
         Application.Quit();
 #endif
     }
-    
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            deleteAllRanks();
+        }
+
+    }
+    public void deleteAllRanks()
+    {
+       //Debug.Log("DELETED");
+      PlayerPrefs.DeleteAll();
+    }
 }

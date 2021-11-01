@@ -89,4 +89,6 @@ void Update()
         score++;
         PlayerPrefs.SetInt("score", score);
     }
+
+
 }
